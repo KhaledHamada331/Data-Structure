@@ -1,0 +1,172 @@
+:root {
+    --primary: #10b981;
+    --bg: #0b1120;
+    --card: #1e293b;
+    --text: #f8fafc;
+}
+
+body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; overflow-x: hidden; }
+
+.page-wrapper { display: flex; flex-direction: column; align-items: center; padding: 30px; }
+
+.theory-header { 
+    width: 100%; max-width: 1000px; background: var(--card); padding: 25px; 
+    border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 25px; 
+}
+
+.action-row { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+
+/* Styling the Sexy Button */
+.btn-primary {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border: none; padding: 10px 20px; border-radius: 10px; color: white;
+    font-weight: bold; cursor: pointer; transition: 0.3s;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(16, 185, 129, 0.6); }
+
+/* SVG Visual Area */
+.visualizer-container { width: 100%; max-width: 1300px; }
+.visual-area { 
+    background: #060b13; border-radius: 20px; height: 500px; 
+    overflow: auto; border: 1px solid rgba(16, 185, 129, 0.2); 
+}
+#tree-svg { width: 2500px; height: 1000px; }
+
+/* Node Style */
+.bplus-node-rect { fill: #1e293b; stroke: var(--primary); stroke-width: 2; rx: 8; }
+.bplus-key-text { fill: white; font-size: 14px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+.bplus-line { fill: none; stroke: rgba(16, 185, 129, 0.4); stroke-width: 2; }
+
+.back-home { position: fixed; top: 20px; left: 20px; color: var(--primary); text-decoration: none; font-weight: bold; }
+/* زرار الـ Reset - هادي بس أنيق */
+.btn-reset {
+    background: transparent;
+    color: #94a3b8; /* لون رمادي فاتح */
+    border: 1px solid #334155;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-reset:hover {
+    background: rgba(239, 68, 68, 0.1); /* توهج أحمر خفيف جداً عند الوقوف */
+    color: #ef4444; /* يقلب أحمر خفيف */
+    border-color: #ef4444;
+}
+
+/* زرار الكود (The Code Link) - شكل كارت صغير احترافي */
+.code-btn-modern {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(16, 185, 129, 0.05);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    padding: 10px 20px;
+    border-radius: 14px;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    min-width: 140px;
+}
+
+.code-btn-modern span {
+    color: #10b981;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 2px;
+}
+
+.code-btn-modern small {
+    color: #64748b;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+}
+
+.code-btn-modern:hover {
+    background: rgba(16, 185, 129, 0.1);
+    transform: scale(1.05) rotate(1deg); /* هزة بسيطة بتدي صياعة للديزاين */
+    border-color: #10b981;
+}
+
+.code-btn-modern:hover span {
+    text-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+}
+/* تنسيق المجموعة الأساسية للتحكم */
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* مسافة بين العناصر */
+}
+
+/* تنسيق الـ Input Group */
+.input-group {
+    display: flex;
+    align-items: center;
+    background: #0b1120;
+    border: 1px solid #334155;
+    padding: 5px 12px;
+    border-radius: 12px;
+    transition: border-color 0.3s ease;
+}
+
+.input-group:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+}
+
+/* تمييز جروب الإدخال الرئيسي */
+.primary-group {
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.input-group input {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 8px;
+    outline: none;
+    width: 70px;
+    font-weight: bold;
+}
+
+.input-group label {
+    font-size: 0.75rem;
+    color: #64748b;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+/* أيقونة بسيطة جوه الزرار */
+.btn-primary i {
+    font-style: normal;
+    margin-right: 5px;
+    font-size: 1.2rem;
+    line-height: 0;
+}
+/* ستايل زرار الـ Delete في الـ B+ Tree */
+.btn-delete-bplus {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid #ef4444;
+    color: #ef4444;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-left: 5px;
+}
+
+.btn-delete-bplus:hover {
+    background: #ef4444;
+    color: white;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+}
+
+.btn-delete-bplus i {
+    font-style: normal;
+    margin-right: 3px;
+    font-weight: bold;
+}

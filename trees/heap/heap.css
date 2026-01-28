@@ -1,0 +1,184 @@
+:root {
+    --primary: #3b82f6;      /* Blue for Heap */
+    --primary-glow: rgba(59, 130, 246, 0.4);
+    --danger: #ef4444;
+    --bg: #0b1120;
+    --card: #1e293b;
+    --text: #f8fafc;
+    --input-bg: #060b13;
+}
+
+body { 
+    font-family: 'Segoe UI', system-ui, sans-serif; 
+    background: var(--bg); 
+    color: var(--text); 
+    margin: 0; 
+    min-height: 100vh;
+}
+
+.page-wrapper { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    padding: 30px; 
+}
+
+/* Header & Controls */
+.theory-header { 
+    width: 100%; 
+    max-width: 1000px; 
+    background: var(--card); 
+    padding: 25px; 
+    border-radius: 20px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+    margin-bottom: 25px; 
+}
+
+.action-row { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    gap: 20px; 
+    flex-wrap: wrap; 
+}
+
+.controls { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+}
+
+/* Input Styles */
+.input-group {
+    display: flex;
+    align-items: center;
+    background: var(--input-bg);
+    border: 1px solid #334155;
+    padding: 5px 12px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.input-group:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 10px var(--primary-glow);
+}
+
+.input-group input {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 8px;
+    outline: none;
+    width: 80px;
+    font-weight: bold;
+}
+
+/* Buttons Styles */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, #2563eb 100%);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px var(--primary-glow);
+}
+
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--primary-glow); }
+
+.btn-danger {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+    border: 1px solid var(--danger);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-danger:hover { background: var(--danger); color: white; }
+
+.btn-reset {
+    background: transparent;
+    color: #64748b;
+    border: 1px solid #334155;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-reset:hover { color: white; border-color: #94a3b8; }
+
+/* Links */
+.code-btn-modern {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(59, 130, 246, 0.05);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    padding: 10px 25px;
+    border-radius: 15px;
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+.code-btn-modern:hover {
+    transform: scale(1.05) rotate(-1deg);
+    border-color: var(--primary);
+}
+
+.code-btn-modern span { color: var(--primary); font-weight: bold; }
+.code-btn-modern small { color: #64748b; font-size: 0.7rem; }
+
+.back-home {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: bold;
+    background: rgba(59, 130, 246, 0.1);
+    padding: 8px 15px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.back-home:hover { background: var(--primary); color: white; }
+
+/* Visualizer Panels */
+.visualizer-container { width: 100%; max-width: 1200px; display: flex; flex-direction: column; gap: 20px; }
+
+.visual-area { 
+    background: #060b13; 
+    border-radius: 20px; 
+    border: 1px solid rgba(255,255,255,0.05); 
+    padding: 20px; 
+    position: relative; 
+}
+
+.tree-view { height: 450px; overflow: auto; }
+.array-view { height: 120px; display: flex; flex-direction: column; justify-content: center; }
+
+#heap-svg { width: 100%; height: 100%; min-width: 800px; }
+
+/* Array Styling */
+.array-flex { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+.array-item {
+    width: 45px; height: 45px; background: var(--card); border: 2px solid var(--primary);
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 10px; position: relative; font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.array-index { font-size: 10px; color: #64748b; position: absolute; bottom: -20px; }
+
+/* SVG Tree Nodes */
+.node-circle { fill: var(--card); stroke: var(--primary); stroke-width: 3; filter: drop-shadow(0 0 5px var(--primary-glow)); }
+.node-text { fill: white; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+.edge-line { stroke: rgba(148, 163, 184, 0.3); stroke-width: 2; }

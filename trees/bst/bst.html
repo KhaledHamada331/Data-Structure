@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BST Visualizer - Pro Version</title>
+    <link rel="stylesheet" href="bst.css">
+</head>
+<body>
+    <a href="../tree-hub.html" class="back-home">Back to Tree Hub</a>
+
+    <div class="main-container">
+        <section class="theory-section">
+            <h1>Binary Search Tree (BST)</h1>
+            <p>
+                In a <strong>BST</strong>, for every node, the values in the left subtree are smaller, 
+                and the values in the right subtree are larger. This structure allows for fast 
+                searching, insertion, and deletion.
+            </p>
+            
+            <div class="logic-box">
+                <h3>Operations Logic:</h3>
+                <ul>
+                    <li><strong>Insert:</strong> Compare with root, go left if smaller, right if larger.</li>
+                    <li><strong>Delete:</strong> 
+                        <ol>
+                            <li>Leaf: Just remove.</li>
+                            <li>One Child: Replace with child.</li>
+                            <li>Two Children: Replace with In-order Successor.</li>
+                        </ol>
+                    </li>
+                </ul>
+            </div>
+
+            <a href="code.html" class="code-link-card">
+                <div class="card-content">
+                    <span>View Full Implementation</span>
+                    <small>C++, Java & Python Manual Logic</small>
+                </div>
+                <div class="card-icon">💻</div>
+            </a>
+        </section>
+
+        <section class="visualizer-section">
+            <div class="controls">
+                <input type="number" id="nodeInput" placeholder="Enter Node Value">
+                
+                <div class="btn-group">
+                    <button onclick="insertNode()" class="btn-primary">Insert Node</button>
+                    <button onclick="handleDelete()" class="btn-danger">Delete Node</button>
+                </div>
+                
+                <div class="btn-group" style="margin-top: 10px;">
+                    <button onclick="resetTree()" style="background: #475569;">Reset Tree</button>
+                </div>
+            </div>
+
+            <div class="visual-area">
+                <svg id="tree-svg" preserveAspectRatio="xMidYMid meet"></svg>
+            </div>
+
+            <div class="info-box">
+                <p id="message">Waiting for your first node...</p>
+            </div>
+        </section>
+    </div>
+
+    <script src="bst.js"></script>
+</body>
+</html>

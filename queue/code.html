@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queue Implementation - Manual Logic</title>
+    <style>
+        :root {
+            --bg: #0b1120; /* نفس درجة الخلفية الغامقة اللي في الصورة */
+            --card: #111827;
+            --primary: #3b82f6;
+            --accent: #ec4899;
+            --text: #94a3b8;
+            --header-text: #f8fafc;
+            --code-bg: #000000;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            color: var(--header-text);
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: var(--primary);
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .back-link:hover { color: var(--accent); }
+
+        .description {
+            margin-bottom: 30px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Tabs Design */
+        .tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            background: #1e293b;
+            border: none;
+            color: var(--header-text);
+            padding: 8px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Code Block Design */
+        .code-display {
+            background: var(--code-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #1e293b;
+            display: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .code-display.active { display: block; }
+
+        pre {
+            margin: 0;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #e2e8f0;
+            overflow-x: auto;
+        }
+
+        /* Syntax Highlighting */
+        .keyword { color: #ff79c6; }
+        .type { color: #8be9fd; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; font-style: italic; }
+        .string { color: #f1fa8c; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Queue Implementation</h1>
+        <a href="queue.html" class="back-link">← Back to Visualizer</a>
+    </div>
+
+    <p class="description">
+        Implementation of a Queue using fixed-size arrays with manual <strong>Front</strong> and <strong>Rear</strong> pointer management to demonstrate FIFO logic.
+    </p>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="showCode('cpp', this)">C++</button>
+        <button class="tab-btn" onclick="showCode('java', this)">Java</button>
+        <button class="tab-btn" onclick="showCode('python', this)">Python</button>
+    </div>
+
+    <div id="cpp" class="code-display active">
+<pre>
+<span class="keyword">#include</span> <span class="string">&lt;iostream&gt;</span>
+<span class="keyword">using namespace</span> std;
+
+<span class="keyword">#define</span> MAX 100
+
+<span class="keyword">class</span> Queue {
+    <span class="type">int</span> front, rear;
+<span class="keyword">public</span>:
+    <span class="type">int</span> arr[MAX];
+
+    Queue() { front = 0; rear = 0; } <span class="comment">// Initialize pointers</span>
+
+    <span class="keyword">void</span> <span class="function">enqueue</span>(<span class="type">int</span> x) {
+        <span class="keyword">if</span> (rear == MAX) {
+            cout << <span class="string">"Overflow"</span>;
+            <span class="keyword">return</span>;
+        }
+        arr[rear++] = x; <span class="comment">// Add at rear and increment</span>
+    }
+
+    <span class="type">void</span> <span class="function">dequeue</span>() {
+        <span class="keyword">if</span> (front == rear) {
+            cout << <span class="string">"Underflow"</span>;
+            <span class="keyword">return</span>;
+        }
+        <span class="comment">// Manual Shifting for demonstration</span>
+        <span class="keyword">for</span> (<span class="type">int</span> i = 0; i < rear - 1; i++) {
+            arr[i] = arr[i + 1];
+        }
+        rear--;
+    }
+
+    <span class="type">int</span> <span class="function">getFront</span>() {
+        <span class="keyword">return</span> (front == rear) ? -1 : arr[front];
+    }
+};</pre>
+    </div>
+
+    <div id="java" class="code-display">
+<pre>
+<span class="keyword">class</span> Queue {
+    <span class="keyword">static final int</span> MAX = 1000;
+    <span class="type">int</span> front, rear;
+    <span class="type">int</span> a[] = <span class="keyword">new int</span>[MAX];
+
+    Queue() { front = 0; rear = 0; }
+
+    <span class="type">boolean</span> <span class="function">enqueue</span>(<span class="type">int</span> x) {
+        <span class="keyword">if</span> (rear == MAX) <span class="keyword">return false</span>;
+        a[rear++] = x;
+        <span class="keyword">return true</span>;
+    }
+
+    <span class="type">void</span> <span class="function">dequeue</span>() {
+        <span class="keyword">if</span> (front == rear) <span class="keyword">return</span>;
+        <span class="keyword">for</span> (<span class="type">int</span> i = 0; i < rear - 1; i++) {
+            a[i] = a[i + 1];
+        }
+        rear--;
+    }
+}</pre>
+    </div>
+
+    <div id="python" class="code-display">
+<pre>
+<span class="keyword">class</span> Queue:
+    <span class="keyword">def</span> <span class="function">__init__</span>(self, size):
+        self.size = size
+        self.queue = [None] * size
+        self.front = 0
+        self.rear = 0
+
+    <span class="keyword">def</span> <span class="function">enqueue</span>(self, item):
+        <span class="keyword">if</span> self.rear == self.size:
+            print(<span class="string">"Queue Full"</span>)
+        <span class="keyword">else</span>:
+            self.queue[self.rear] = item
+            self.rear += 1
+
+    <span class="keyword">def</span> <span class="function">dequeue</span>(self):
+        <span class="keyword">if</span> self.front == self.rear:
+            print(<span class="string">"Queue Empty"</span>)
+            <span class="keyword">return None</span>
+        <span class="comment"># Manual Shifting</span>
+        val = self.queue[0]
+        <span class="keyword">for</span> i <span class="keyword">in</span> range(self.rear - 1):
+            self.queue[i] = self.queue[i + 1]
+        self.rear -= 1
+        <span class="keyword">return</span> val</pre>
+    </div>
+</div>
+
+<script>
+    function showCode(lang, btn) {
+        document.querySelectorAll('.code-display').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+        document.getElementById(lang).classList.add('active');
+        btn.classList.add('active');
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,193 @@
+:root {
+    --primary: #6366f1;
+    --secondary: #ec4899;
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #f8fafc;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.main-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.theory-section, .visualizer-section {
+    background: var(--card);
+    padding: 25px;
+    border-radius: 15px;
+    flex: 1;
+}
+
+/* شكل الـ Stack */
+.stack-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.stack-container {
+    display: flex;
+    flex-direction: column-reverse; /* يخلي الإضافة من تحت لفوق */
+    width: 150px;
+    min-height: 300px;
+    border: 4px solid var(--text);
+    border-top: none;
+    padding: 10px;
+    border-radius: 0 0 10px 10px;
+}
+
+.stack-item {
+    height: 40px;
+    width: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.4s ease; /* سرعة الأنيميشن */
+}
+
+/* أنيميشن الدخول */
+@keyframes pushAnim {
+    from { transform: translateY(-100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.push-animation { animation: pushAnim 0.5s forwards; }
+
+.controls button {
+    padding: 10px 15px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin: 2px;
+}
+/* Code Link Card Design */
+.code-link-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    padding: 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: white;
+    margin-top: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.code-link-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.card-content span {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.card-content small {
+    opacity: 0.8;
+}
+
+.card-icon {
+    font-size: 1.5rem;
+}
+
+.highlight {
+    color: #ec4899;
+    font-weight: bold;
+}
+/* تنسيق الـ Input */
+.controls input {
+    width: 100%;
+    padding: 12px 15px;
+    background: #0b1120; /* نفس الدرجة الغامقة في الصورة */
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 20px; /* المسافة اللي طلبتها بين الـ input والزراير */
+    outline: none;
+    box-sizing: border-box;
+}
+
+.controls input:focus {
+    border-color: #3b82f6; /* اللون الأزرق عند الضغط */
+}
+
+/* تنسيق مجموعة الزراير */
+.btn-group {
+    display: flex;
+    gap: 12px; /* المسافة بين الزراير وبعضها */
+}
+
+.btn-group button {
+    flex: 1; /* عشان الزراير تتوزع بالتساوي على عرض السطر */
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-size: 0.95rem;
+}
+
+/* الألوان زي الصورة */
+.btn-primary {
+    background-color: #3b82f6; /* الأزرق */
+}
+
+.btn-danger {
+    background-color: #ef4444; /* الأحمر */
+}
+
+.btn-primary:hover, .btn-danger:hover {
+    filter: brightness(1.2);
+    transform: translateY(-2px);
+}
+/* التعديل النهائي لزرار العودة عشان ميتداخلش مع المحتوى */
+.back-home {
+    position: fixed; /* هيفضل ثابت في الشاشة حتى لو عملت سكرول */
+    top: 25px;
+    left: 25px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(17, 24, 39, 0.8); /* لون غامق شفاف يتماشى مع صورتك */
+    color: #f8fafc;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    backdrop-filter: blur(10px); /* تأثير الزجاج عشان يبان مودرن */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 9999; /* عشان يفضل فوق أي لير تانية */
+    transition: all 0.3s ease;
+}
+
+.back-home:hover {
+    background: #3b82f6; /* يقلب أزرق نفس لون الزراير اللي عندك عند الهوفر */
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}

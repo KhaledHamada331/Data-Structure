@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Neural Hash - C++ Core</title>
+    <link rel="stylesheet" href="../graph/graph.css"> <style>
+        .code-window {
+            background: #0f172a;
+            border: 1px solid #22d3ee;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px auto;
+            width: 90%;
+            height: auto; /* Corrected: No height cutting */
+            overflow: visible;
+        }
+        pre { color: #f8f8f2; text-align: left; direction: ltr; font-family: 'Consolas', monospace; }
+        .keyword { color: #ff79c6; }
+        .type { color: #8be9fd; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .string { color: #f1fa8c; }
+    </style>
+</head>
+<body style="background: #060b13; padding-bottom: 100px;">
+    <a href="hash.html" style="color: #22d3ee; margin: 20px; display: block; text-decoration: none;">← Back to Visualizer</a>
+    
+    <div class="code-window">
+        <h2 style="color: #22d3ee; border-bottom: 1px solid #22d3ee; padding-bottom: 10px;">Hash Table (Chaining Implementation)</h2>
+        <p style="color: #94a3b8;">This implementation uses <code>std::vector</code> of <code>std::list</code> to handle collisions efficiently.</p>
+        
+        <pre><code><span class="keyword">#include</span> <span class="string">&lt;iostream&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;vector&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;list&gt;</span>
+
+<span class="keyword">class</span> <span class="type">NeuralHashTable</span> {
+    <span class="keyword">int</span> buckets;
+    <span class="type">std::vector</span>&lt;<span class="type">std::list</span>&lt;<span class="keyword">int</span>&gt;&gt; table;
+
+<span class="keyword">public:</span>
+    <span class="function">NeuralHashTable</span>(<span class="keyword">int</span> size) : buckets(size) {
+        table.resize(buckets);
+    }
+
+    <span class="comment">// Hash Function: index = key % buckets</span>
+    <span class="keyword">int</span> <span class="function">hashFunction</span>(<span class="keyword">int</span> key) {
+        <span class="keyword">return</span> key % buckets;
+    }
+
+    <span class="comment">// Insert key into the hash table</span>
+    <span class="keyword">void</span> <span class="function">insert</span>(<span class="keyword">int</span> key) {
+        <span class="keyword">int</span> index = <span class="function">hashFunction</span>(key);
+        table[index].push_back(key);
+    }
+};</code></pre>
+    </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVL Visualizer - Premium View</title>
+    <link rel="stylesheet" href="avl.css">
+</head>
+<body>
+    <a href="../tree-hub.html" class="back-home">← Back to Hub</a>
+
+    <div class="page-wrapper">
+        <header class="theory-header">
+            <div class="header-content">
+                <h1>AVL Tree Visualizer</h1>
+                <p>A self-balancing BST that maintains height equilibrium through rotations.</p>
+                
+                <div class="action-row">
+    <div class="controls">
+        <div class="input-group">
+            <input type="number" id="nodeInput" placeholder="Value">
+            <button onclick="insertNode()" class="btn-primary">Insert</button>
+            <button onclick="deleteNodeBtn()" class="btn-danger">Delete</button>
+        </div>
+        <button onclick="resetTree()" class="btn-reset">Reset</button>
+    </div>
+    
+    <a href="code.html" class="code-btn-modern">
+        <span>C++ Logic</span>
+        <small>Self-Balancing</small>
+    </a>
+</div>
+            </div>
+        </header>
+
+        <main class="visualizer-container">
+            <div class="visual-area">
+                <svg id="tree-svg"></svg>
+            </div>
+        </main>
+    </div>
+
+    <script src="avl.js"></script>
+</body>
+</html>

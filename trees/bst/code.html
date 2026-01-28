@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BST Implementation - Full Logic</title>
+    <style>
+        :root {
+            --bg: #0b1120;
+            --card: #111827;
+            --primary: #3b82f6;
+            --accent: #ec4899;
+            --text: #94a3b8;
+            --header-text: #f8fafc;
+            --code-bg: #000000;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 20px;
+        }
+
+        .header h1 { color: var(--header-text); font-size: 2rem; margin: 0; }
+
+        .back-link {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-link:hover { color: var(--accent); }
+
+        /* Tabs Design */
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+
+        .tab-btn {
+            background: #1e293b;
+            border: none;
+            color: var(--header-text);
+            padding: 10px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active { background: var(--primary); box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); }
+
+        /* Code Block Design */
+        .code-display {
+            background: var(--code-bg);
+            padding: 35px;
+            border-radius: 12px;
+            border: 1px solid #1e293b;
+            display: none;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+        }
+
+        .code-display.active { display: block; }
+
+        pre {
+            margin: 0;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #e2e8f0;
+            overflow-x: auto;
+        }
+
+        /* Syntax Highlighting */
+        .keyword { color: #ff79c6; }
+        .type { color: #8be9fd; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; font-style: italic; }
+        .string { color: #f1fa8c; }
+        .number { color: #bd93f9; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>BST Full Implementation</h1>
+        <a href="bst.html" class="back-link">← Back to Visualizer</a>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="showCode('cpp', this)">C++</button>
+        <button class="tab-btn" onclick="showCode('java', this)">Java</button>
+        <button class="tab-btn" onclick="showCode('python', this)">Python</button>
+    </div>
+
+    <div id="cpp" class="code-display active">
+<pre>
+<span class="keyword">#include</span> <span class="string">&lt;iostream&gt;</span>
+<span class="keyword">using namespace</span> std;
+
+<span class="keyword">struct</span> <span class="type">Node</span> {
+    <span class="type">int</span> data;
+    <span class="type">Node</span> *left, *right;
+    <span class="type">Node</span>(<span class="type">int</span> val) : data(val), left(<span class="keyword">NULL</span>), right(<span class="keyword">NULL</span>) {}
+};
+
+<span class="keyword">class</span> BST {
+<span class="keyword">public</span>:
+    <span class="type">Node</span>* root;
+    BST() { root = <span class="keyword">NULL</span>; }
+
+    <span class="comment">// 1. Insertion (Recursive)</span>
+    <span class="type">Node</span>* <span class="function">insert</span>(<span class="type">Node</span>* node, <span class="type">int</span> val) {
+        <span class="keyword">if</span> (!node) <span class="keyword">return new</span> <span class="type">Node</span>(val);
+        <span class="keyword">if</span> (val < node->data) node->left = <span class="function">insert</span>(node->left, val);
+        <span class="keyword">else if</span> (val > node->data) node->right = <span class="function">insert</span>(node->right, val);
+        <span class="keyword">return</span> node;
+    }
+
+    <span class="comment">// 2. Deletion (The complete Logic)</span>
+    <span class="type">Node</span>* <span class="function">remove</span>(<span class="type">Node</span>* node, <span class="type">int</span> val) {
+        <span class="keyword">if</span> (!node) <span class="keyword">return</span> node;
+        <span class="keyword">if</span> (val < node->data) node->left = <span class="function">remove</span>(node->left, val);
+        <span class="keyword">else if</span> (val > node->data) node->right = <span class="function">remove</span>(node->right, val);
+        <span class="keyword">else</span> {
+            <span class="keyword">if</span> (!node->left) { <span class="type">Node</span>* temp = node->right; <span class="keyword">delete</span> node; <span class="keyword">return</span> temp; }
+            <span class="keyword">if</span> (!node->right) { <span class="type">Node</span>* temp = node->left; <span class="keyword">delete</span> node; <span class="keyword">return</span> temp; }
+            <span class="type">Node</span>* temp = <span class="function">minValueNode</span>(node->right);
+            node->data = temp->data;
+            node->right = <span class="function">remove</span>(node->right, temp->data);
+        }
+        <span class="keyword">return</span> node;
+    }
+
+    <span class="type">Node</span>* <span class="function">minValueNode</span>(<span class="type">Node</span>* node) {
+        <span class="type">Node</span>* current = node;
+        <span class="keyword">while</span> (current && current->left) current = current->left;
+        <span class="keyword">return</span> current;
+    }
+
+    <span class="comment">// 3. Traversals (In-order)</span>
+    <span class="keyword">void</span> <span class="function">inorder</span>(<span class="type">Node</span>* node) {
+        <span class="keyword">if</span> (node) {
+            <span class="function">inorder</span>(node->left);
+            cout << node->data << <span class="string">" "</span>;
+            <span class="function">inorder</span>(node->right);
+        }
+    }
+};</pre>
+    </div>
+
+    <div id="java" class="code-display">
+<pre>
+<span class="keyword">class</span> Node {
+    <span class="type">int</span> data;
+    Node left, right;
+    <span class="keyword">public</span> Node(<span class="type">int</span> item) {
+        data = item;
+        left = right = <span class="keyword">null</span>;
+    }
+}
+
+<span class="keyword">class</span> BinarySearchTree {
+    Node root;
+
+    <span class="comment">// Full Recursive Delete</span>
+    Node <span class="function">deleteRecursive</span>(Node root, <span class="type">int</span> key) {
+        <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> root;
+        <span class="keyword">if</span> (key < root.data) root.left = <span class="function">deleteRecursive</span>(root.left, key);
+        <span class="keyword">else if</span> (key > root.data) root.right = <span class="function">deleteRecursive</span>(root.right, key);
+        <span class="keyword">else</span> {
+            <span class="keyword">if</span> (root.left == <span class="keyword">null</span>) <span class="keyword">return</span> root.right;
+            <span class="keyword">else if</span> (root.right == <span class="keyword">null</span>) <span class="keyword">return</span> root.left;
+            root.data = <span class="function">minValue</span>(root.right);
+            root.right = <span class="function">deleteRecursive</span>(root.right, root.data);
+        }
+        <span class="keyword">return</span> root;
+    }
+
+    <span class="type">int</span> <span class="function">minValue</span>(Node root) {
+        <span class="type">int</span> minv = root.data;
+        <span class="keyword">while</span> (root.left != <span class="keyword">null</span>) { minv = root.left.data; root = root.left; }
+        <span class="keyword">return</span> minv;
+    }
+}</pre>
+    </div>
+
+    <div id="python" class="code-display">
+<pre>
+<span class="keyword">class</span> Node:
+    <span class="keyword">def</span> <span class="function">__init__</span>(self, key):
+        self.left = <span class="keyword">None</span>
+        self.right = <span class="keyword">None</span>
+        self.val = key
+
+<span class="keyword">def</span> <span class="function">deleteNode</span>(root, key):
+    <span class="keyword">if</span> root <span class="keyword">is None</span>: <span class="keyword">return</span> root
+    <span class="keyword">if</span> key < root.val:
+        root.left = <span class="function">deleteNode</span>(root.left, key)
+    <span class="keyword">elif</span> key > root.val:
+        root.right = <span class="function">deleteNode</span>(root.right, key)
+    <span class="keyword">else</span>:
+        <span class="keyword">if</span> root.left <span class="keyword">is None</span>: <span class="keyword">return</span> root.right
+        <span class="keyword">elif</span> root.right <span class="keyword">is None</span>: <span class="keyword">return</span> root.left
+        
+        temp = <span class="function">minValueNode</span>(root.right)
+        root.val = temp.val
+        root.right = <span class="function">deleteNode</span>(root.right, temp.val)
+    <span class="keyword">return</span> root</pre>
+    </div>
+</div>
+
+<script>
+    function showCode(lang, btn) {
+        document.querySelectorAll('.code-display').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+        document.getElementById(lang).classList.add('active');
+        btn.classList.add('active');
+    }
+</script>
+
+</body>
+</html>

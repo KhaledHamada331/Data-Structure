@@ -1,0 +1,185 @@
+:root {
+    --primary: #22d3ee;
+    --primary-glow: rgba(34, 211, 238, 0.4);
+    --bg: #060b13;
+    --card: #0f172a;
+    --text: #f8fafc;
+}
+
+body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; overflow: hidden; }
+
+.page-wrapper { display: flex; flex-direction: column; align-items: center; height: 100vh; padding: 20px; }
+
+.theory-header { 
+    width: 95%; max-width: 1100px; background: var(--card); padding: 20px; 
+    border-radius: 20px; border: 1px solid rgba(34, 211, 238, 0.1);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.7); z-index: 10;
+}
+
+.action-row { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; }
+
+.cyan-group { border-color: var(--primary) !important; background: rgba(6, 182, 212, 0.05) !important; }
+
+.btn-cyan {
+    background: linear-gradient(135deg, #22d3ee 0%, #0891b2 100%);
+    border: none; padding: 10px 20px; border-radius: 10px; color: white;
+    font-weight: bold; cursor: pointer; transition: 0.3s;
+    box-shadow: 0 0 15px var(--primary-glow);
+}
+
+.visual-area { 
+    width: 100vw; height: 70vh; margin-top: 20px; 
+    border-radius: 30px; position: relative; cursor: crosshair;
+}
+
+/* D3 Styles */
+.node { stroke: var(--primary); stroke-width: 2px; fill: #0f172a; cursor: grab; }
+.node:active { cursor: grabbing; }
+.link { stroke: var(--primary); stroke-opacity: 0.2; stroke-width: 1.5px; }
+.node-label { fill: var(--text); font-size: 12px; pointer-events: none; text-shadow: 0 0 5px #000; }
+
+.badge {
+    background: rgba(34, 211, 238, 0.1);
+    color: var(--primary);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    border: 1px solid var(--primary-glow);
+    margin-left: 10px;
+}
+/* زرار ريسيت فخم */
+.btn-modern-reset {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(34, 211, 238, 0.2);
+    color: #94a3b8;
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+
+.btn-modern-reset:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border-color: #ef4444;
+}
+.btn-danger-outline {
+    background: transparent;
+    border: 1px solid #ef4444;
+    color: #ef4444;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.btn-danger-outline:hover {
+    background: #ef4444;
+    color: white;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+}
+.back-home {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    border-bottom: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.back-home:hover {
+    border-bottom-color: var(--primary);
+    text-shadow: 0 0 10px var(--primary-glow);
+}
+/* رص العناصر في صف واحد */
+.controls-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* المسافة بين كل زرار والتاني */
+    flex-wrap: wrap; /* عشان لو الشاشة صغرت الزراير تنزل تحت بعضها بدل ما تضرب */
+}
+
+/* ستايل زرار الـ BFS Pulse */
+.btn-pulse {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-pulse:hover {
+    background: rgba(34, 211, 238, 0.1);
+    box-shadow: 0 0 15px var(--primary-glow);
+}
+
+/* تعديل زرار الريسيت عشان يكون في نفس مستوى الطول */
+.btn-modern-reset {
+    height: 42px; /* نفس طول الـ input group تقريباً */
+    padding: 0 20px;
+}
+
+/* تعديل الـ Action Row عشان يوزع المساحة صح */
+.action-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+/* زرار الكود (The Code Link) - ستايل مودرن */
+.code-btn-modern {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(34, 211, 238, 0.05); /* لون Cyan خفيف */
+    border: 1px solid rgba(34, 211, 238, 0.2);
+    padding: 8px 20px;
+    border-radius: 14px;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    min-width: 140px;
+}
+
+.code-btn-modern span {
+    color: var(--primary); /* اللون اللبني بتاعك */
+    font-weight: bold;
+    font-size: 0.85rem;
+    margin-bottom: 2px;
+}
+
+.code-btn-modern small {
+    color: #64748b;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+}
+
+.code-btn-modern:hover {
+    background: rgba(34, 211, 238, 0.1);
+    transform: scale(1.05) rotate(1deg); /* هزة خفيفة للصياعة */
+    border-color: var(--primary);
+}
+/* ستايل الـ Toggle Switch */
+.switch { position: relative; display: inline-block; width: 40px; height: 20px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #1e293b; transition: .4s; border-radius: 20px; border: 1px solid var(--primary); }
+.slider:before { position: absolute; content: ""; height: 12px; width: 12px; left: 4px; bottom: 3px; background-color: var(--primary); transition: .4s; border-radius: 50%; }
+input:checked + .slider { background-color: var(--primary-glow); }
+input:checked + .slider:before { transform: translateX(20px); background-color: var(--primary); }
+
+/* ستايل السهم */
+#arrowhead { fill: var(--primary); }

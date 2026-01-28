@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B+ Tree Visualizer - DB Engine Style</title>
+    <link rel="stylesheet" href="bplus.css">
+</head>
+<body>
+    <a href="../tree-hub.html" class="back-home">← Back to Hub</a>
+
+    <div class="page-wrapper">
+        <header class="theory-header">
+            <div class="header-content">
+                <h1>B+ Tree Visualizer</h1>
+                <p>The backbone of modern databases. All actual data is stored in <strong>Leaf Nodes</strong>, while internal nodes act as pointers.</p>
+                
+<div class="action-row">
+    <div class="controls">
+        <div class="input-group">
+            <label>Order:</label>
+            <input type="number" id="degreeInput" value="3" min="3" max="5">
+        </div>
+        
+        <div class="input-group primary-group">
+            <input type="number" id="nodeInput" placeholder="Value">
+            <button onclick="insertNode()" class="btn-primary">
+                <i>+</i> Insert
+            </button>
+            <button onclick="removeNode()" class="btn-delete-bplus">
+                <i>−</i> Delete
+            </button>
+        </div>
+
+        <button onclick="resetTree()" class="btn-reset">
+            Reset Tree
+        </button>
+    </div>
+    
+    <a href="code.html" class="code-btn-modern">
+        <span>View Logic</span>
+        <small>Disk-Optimized C++</small>
+    </a>
+</div>
+            </div>
+        </header>
+
+        <main class="visualizer-container">
+            <div class="visual-area">
+                <svg id="tree-svg"></svg>
+            </div>
+            <div class="info-box">
+                <p id="message">Tip: B+ Trees grow <strong>Upwards</strong> when the root splits.</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="bplus.js"></script>
+</body>
+</html>

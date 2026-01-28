@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linked List Visualizer</title>
+    <link rel="stylesheet" href="linked-list.css">
+</head>
+<body>
+    <a href="../index.html" class="back-home">← Back to Home</a>
+    
+    <div class="main-container">
+        <section class="theory-section">
+            <h1>Linked List</h1>
+            <p>A <strong>Linked List</strong> is a dynamic data structure consisting of nodes. Each node contains <strong>Data</strong> and a <strong>Pointer</strong> to the next node.</p>
+            
+            <div class="type-selector">
+                <label>List Type:</label>
+                <select id="listType" onchange="changeListType()">
+                    <option value="singly">Singly Linked List (Linear)</option>
+                    <option value="doubly">Doubly Linked List</option>
+                </select>
+            </div>
+
+            <a href="code.html" class="code-link-card">
+                <div class="card-content">
+                    <span>View Implementation Codes</span>
+                    <small>Singly & Doubly Manual Logic</small>
+                </div>
+                <div class="card-icon">🚀</div>
+            </a>
+        </section>
+
+        <section class="visualizer-section">
+            <div class="controls">
+                <input type="text" id="nodeInput" placeholder="Value">
+                <div class="btn-group">
+                    <button onclick="insertFront()" class="btn-primary">Insert Front</button>
+                    <button onclick="insertEnd()" class="btn-primary">Insert End</button>
+                </div>
+                <div class="btn-group">
+                    <button onclick="popFront()" class="btn-danger">Pop Front</button>
+                    <button onclick="popEnd()" class="btn-danger">Pop End</button>
+                </div>
+            </div>
+
+            <div class="visual-area">
+                <div id="list-container" class="list-wrapper">
+                    </div>
+            </div>
+
+            <div class="status-box">
+                <p id="message">Select a type and start building your list!</p>
+            </div>
+        </section>
+    </div>
+    <script src="linked-list.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Neural Graph - Reference</title>
+    <link rel="stylesheet" href="graph.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <a href="../index.html" class="back-home">← Back to Home</a>
+
+    <div class="page-wrapper">
+        <header class="theory-header">
+            <div class="header-content">
+                <h1>Ultimate Neural Graph</h1>
+                <p>Reference: BFS, DFS, Dijkstra, & Weighted Directed Edges.</p>
+                
+                <div class="action-row" style="display: flex; align-items: center; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <div class="controls-wrapper" style="display: flex; align-items: center; gap: 10px;">
+                        <div class="input-group cyan-group" style="display:flex; align-items:center; border: 1px solid var(--primary); border-radius:10px; padding:5px; background:rgba(34,211,238,0.05);">
+                            <input type="text" id="nodeInput" placeholder="Node Name" style="background:transparent; border:none; color:white; padding:5px; outline:none; width:100px;">
+                            <input type="number" id="edgeWeight" placeholder="W" title="Weight" style="width: 45px; background: transparent; border: none; color: #22d3ee; border-left: 1px solid var(--primary); padding-left: 8px; outline:none;">
+                            <button onclick="addNewNode()" class="btn-primary" style="background:var(--primary); border:none; color:black; padding:5px 15px; border-radius:8px; font-weight:bold; cursor:pointer;">ADD</button>
+                        </div>
+
+                        <button onclick="runBFS()" class="btn-cyan">BFS</button>
+                        <button onclick="runDFS()" class="btn-cyan" style="background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%); box-shadow: 0 0 15px rgba(168,85,247,0.4);">DFS</button>
+                        <button onclick="runDijkstra()" class="btn-cyan" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); box-shadow: 0 0 15px rgba(245,158,11,0.4);">Dijkstra</button>
+                        <button onclick="resetGraph()" class="btn-modern-reset">Reset</button>
+
+                        <div class="toggle-group" style="display: flex; align-items: center; gap: 8px; color: var(--primary); font-size: 0.8rem; font-weight: bold;">
+                            <span>Directed</span>
+                            <label class="switch">
+                                <input type="checkbox" id="directedToggle" onchange="update()">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                     <a href="code.html" class="code-btn-modern">
+        <span>View Logic</span>
+        <small>Graph Master C++</small>
+    </a>
+                </div>
+            </div>
+        </header>
+
+        <main id="graph-container" style="width: 100%; height: 70vh; margin-top: 20px;"></main>
+    </div>
+
+    <script src="graph.js"></script>
+</body>
+</html>

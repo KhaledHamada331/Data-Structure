@@ -1,0 +1,80 @@
+   
+        :root {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --primary: #6366f1;
+            --text: #f8fafc;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px;
+        }
+        h1 { margin-bottom: 50px; font-size: 2.5rem; color: var(--primary); }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1000px;
+        }
+        .ds-card {
+            background: var(--card);
+            padding: 30px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        .ds-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+        .ds-card h2 { margin: 0 0 10px 0; color: var(--primary); }
+        .ds-card p { opacity: 0.8; font-size: 0.9rem; }
+        .badge {
+            background: var(--primary);
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+        .back-home {
+    position: fixed; /* هيفضل ثابت في الشاشة حتى لو عملت سكرول */
+    top: 25px;
+    left: 25px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(17, 24, 39, 0.8); /* لون غامق شفاف يتماشى مع صورتك */
+    color: #f8fafc;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    backdrop-filter: blur(10px); /* تأثير الزجاج عشان يبان مودرن */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 9999; /* عشان يفضل فوق أي لير تانية */
+    transition: all 0.3s ease;
+}
+
+.back-home:hover {
+    background: #3b82f6; /* يقلب أزرق نفس لون الزراير اللي عندك عند الهوفر */
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+ 

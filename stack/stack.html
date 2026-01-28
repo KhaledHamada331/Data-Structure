@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack Visualizer</title>
+    <link rel="stylesheet" href="stack.css">
+</head>
+<body>
+<a href="../index.html" class="back-home">← Back to Home</a>
+    <div class="main-container">
+        <section class="theory-section">
+            <h1>Stack Data Structure</h1>
+            <p>A <strong>Stack</strong> is a linear data structure that follows the <strong>LIFO (Last-In-First-Out)</strong> principle. This means the last element added to the stack is the first one to be removed.</p>
+            
+            <div class="operations-list">
+                <h3>Main Operations:</h3>
+                <ul>
+                    <li><strong>Push:</strong> Adds an element to the top.</li>
+                    <li><strong>Pop:</strong> Removes the top element.</li>
+                    <li><strong>Peek:</strong> Returns the top element without removing it.</li>
+                </ul>
+            </div>
+
+            <a href="/stack/code.html" class="code-link-card">
+                <div class="card-content">
+                    <span>View Implementation Codes</span>
+                    <small>C++, Java, and Python</small>
+                </div>
+                <div class="card-icon">🚀</div>
+            </a>
+        </section>
+
+        <section class="visualizer-section">
+    <div class="controls">
+        <input type="number" id="stackInput" placeholder="Enter Value">
+        
+        <div class="btn-group">
+            <button onclick="handlePush()" class="btn-primary">Push</button>
+            <button onclick="handlePop()" class="btn-danger">Pop</button>
+            <button onclick="handlePeek()" class="btn-primary">Peek</button>
+        </div>
+    </div>
+
+    <div class="stack-area">
+    <div id="stack-container" class="stack-container"></div>
+    <div class="stack-label">Stack Container</div>
+</div>
+
+<div class="info-box" style="margin-top: 20px; text-align: center;">
+    <p id="message" style="font-weight: bold; min-height: 24px;">Waiting for action...</p>
+    <p style="color: #94a3b8;">Top Value: <span id="top-val" class="highlight">None</span></p>
+</div>
+    </section>
+    </div>
+    <script src="stack.js"></script>
+</body>
+</html>

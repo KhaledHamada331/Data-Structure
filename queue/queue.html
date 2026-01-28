@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queue Visualizer</title>
+    <link rel="stylesheet" href="queue.css">
+</head>
+<body>
+    <a href="../index.html" class="back-home">← Back to Home</a>
+    
+    <div class="main-container">
+        <section class="theory-section">
+            <h1>Queue Data Structure</h1>
+            <p>A <strong>Queue</strong> is a linear data structure that follows the <strong>FIFO (First-In-First-Out)</strong> principle. The first element added to the queue will be the first one to be removed.</p>
+            
+            <div class="operations-list">
+                <h3>Main Operations:</h3>
+                <ul>
+                    <li><strong>Enqueue:</strong> Adds an element to the rear (end).</li>
+                    <li><strong>Dequeue:</strong> Removes the element from the front (head).</li>
+                </ul>
+            </div>
+
+            <a href="code.html" class="code-link-card">
+                <div class="card-content">
+                    <span>View Implementation Codes</span>
+                    <small>C++, Java, and Python</small>
+                </div>
+                <div class="card-icon">🚀</div>
+            </a>
+        </section>
+
+        <section class="visualizer-section">
+            <div class="controls">
+                <input type="number" id="queueInput" placeholder="Enter Value">
+                <div class="btn-group">
+                    <button onclick="handleEnqueue()" class="btn-primary">Enqueue</button>
+                    <button onclick="handleDequeue()" class="btn-danger">Dequeue</button>
+                </div>
+            </div>
+
+            <div class="visual-area">
+                <div class="labels">
+                    <span>Front (Exit)</span>
+                    <span style="float: right;">Rear (Entry)</span>
+                </div>
+                <div id="queue-container" class="queue-container"></div>
+            </div>
+
+            <div class="info-box">
+                <p id="message">Welcome! Start enqueuing elements.</p>
+                <p>Status: <span id="status-val" class="highlight">Empty</span></p>
+            </div>
+        </section>
+    </div>
+    <script src="queue.js"></script>
+</body>
+</html>

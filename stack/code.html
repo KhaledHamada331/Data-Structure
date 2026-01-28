@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack Implementation - Manual Logic</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --primary: #3b82f6;
+            --accent: #ec4899;
+            --text: #f8fafc;
+            --code-bg: #000000;
+        }
+
+        body {
+            font-family: 'Fira Code', monospace;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--card);
+            padding-bottom: 10px;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-link:hover { color: var(--accent); }
+
+        /* Tabs Logic */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            background: var(--card);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+        }
+
+        .code-display {
+            background: var(--code-bg);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--card);
+            position: relative;
+            display: none; /* Hidden by default */
+        }
+
+        .code-display.active { display: block; }
+
+        pre {
+            margin: 0;
+            overflow-x: auto;
+            color: #d1d5db;
+            line-height: 1.5;
+        }
+
+        .keyword { color: #ff79c6; }
+        .comment { color: #6272a4; font-style: italic; }
+        .function { color: #50fa7b; }
+    
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Stack Implementation</h1>
+        <a href="/stack/stack.html" class="back-link">← Back to Visualizer</a>
+    </div>
+
+    <p style="color: #94a3b8; margin-bottom: 30px;">
+        Implementation of a Stack using fixed-size arrays to demonstrate the underlying logic of <strong>Top</strong> pointer management.
+    </p>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="showCode('cpp', this)">C++</button>
+        <button class="tab-btn" onclick="showCode('java', this)">Java</button>
+        <button class="tab-btn" onclick="showCode('python', this)">Python</button>
+    </div>
+
+    <div id="cpp" class="code-display active">
+<pre>
+<span class="keyword">#include</span> &lt;iostream&gt;
+<span class="keyword">using namespace</span> std;
+
+<span class="keyword">#define</span> MAX 100
+
+<span class="keyword">class</span> Stack {
+    <span class="keyword">int</span> top;
+<span class="keyword">public</span>:
+    <span class="keyword">int</span> arr[MAX];
+
+    Stack() { top = -1; } <span class="comment">// Initialize top</span>
+
+    <span class="keyword">void</span> <span class="function">push</span>(<span class="keyword">int</span> x) {
+        <span class="keyword">if</span> (top >= MAX - 1) {
+            cout << "Overflow";
+            <span class="keyword">return</span>;
+        }
+        arr[++top] = x; <span class="comment">// Increment then insert</span>
+    }
+
+    <span class="keyword">int</span> <span class="function">pop</span>() {
+        <span class="keyword">if</span> (top < 0) {
+            cout << "Underflow";
+            <span class="keyword">return</span> -1;
+        }
+        <span class="keyword">return</span> arr[top--]; <span class="comment">// Return then decrement</span>
+    }
+
+    <span class="keyword">int</span> <span class="function">peek</span>() {
+        <span class="keyword">return</span> (top < 0) ? -1 : arr[top];
+    }
+};</pre>
+    </div>
+
+    <div id="java" class="code-display">
+<pre>
+<span class="keyword">class</span> Stack {
+    <span class="keyword">static final int</span> MAX = 1000;
+    <span class="keyword">int</span> top;
+    <span class="keyword">int</span> a[] = <span class="keyword">new int</span>[MAX];
+
+    Stack() { top = -1; }
+
+    <span class="keyword">boolean</span> <span class="function">push</span>(<span class="keyword">int</span> x) {
+        <span class="keyword">if</span> (top >= (MAX - 1)) {
+            System.out.println("Stack Overflow");
+            <span class="keyword">return false</span>;
+        }
+        a[++top] = x;
+        <span class="keyword">return true</span>;
+    }
+
+    <span class="keyword">int</span> <span class="function">pop</span>() {
+        <span class="keyword">if</span> (top < 0) {
+            System.out.println("Stack Underflow");
+            <span class="keyword">return</span> 0;
+        }
+        <span class="keyword">return</span> a[top--];
+    }
+}</pre>
+    </div>
+
+    <div id="python" class="code-display">
+<pre>
+<span class="keyword">class</span> Stack:
+    <span class="keyword">def</span> <span class="function">__init__</span>(self, size):
+        self.size = size
+        self.stack = [None] * size
+        self.top = -1
+
+    <span class="keyword">def</span> <span class="function">push</span>(self, item):
+        <span class="keyword">if</span> self.top == self.size - 1:
+            print(<span class="keyword">"Stack Overflow"</span>)
+        <span class="keyword">else</span>:
+            self.top += 1
+            self.stack[self.top] = item
+
+    <span class="keyword">def</span> <span class="function">pop</span>(self):
+        <span class="keyword">if</span> self.top == -1:
+            print(<span class="keyword">"Stack Underflow"</span>)
+            <span class="keyword">return None</span>
+        val = self.stack[self.top]
+        self.top -= 1
+        <span class="keyword">return</span> val</pre>
+    </div>
+</div>
+
+<script>
+    function showCode(lang, btn) {
+        // Hide all code blocks
+        document.querySelectorAll('.code-display').forEach(el => el.classList.remove('active'));
+        // Remove active class from buttons
+        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+        
+        // Show selected
+        document.getElementById(lang).classList.add('active');
+        btn.classList.add('active');
+    }
+</script>
+
+</body>
+</html>

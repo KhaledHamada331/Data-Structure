@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Heap - Code Logic</title>
+    <style>
+        :root {
+            --bg: #0b1120;
+            --card: #111827;
+            --primary: #3b82f6;
+            --text: #94a3b8;
+            --code-bg: #000000;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 40px;
+            margin: 0;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 { color: #f8fafc; margin: 0; }
+
+        .back-link { color: var(--primary); text-decoration: none; font-weight: bold; }
+
+        .code-display {
+            background: var(--code-bg);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #1e293b;
+            overflow-x: auto;
+        }
+
+        pre { color: #e2e8f0; line-height: 1.6; }
+        .keyword { color: #ff79c6; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+
+        .logic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .logic-card {
+            background: var(--card);
+            padding: 20px;
+            border-radius: 10px;
+            border-top: 3px solid var(--primary);
+        }
+
+        .math { color: #f8fafc; font-family: 'Courier New', Courier, monospace; background: #1e293b; padding: 2px 5px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Heap Logic (C++)</h1>
+            <a href="heap.html" class="back-link">← Back to Visualizer</a>
+        </div>
+
+        <div class="code-display">
+<pre>
+<span class="comment">// Standard Max-Heapify Algorithm</span>
+<span class="keyword">void</span> <span class="function">heapify</span>(<span class="keyword">int</span> arr[], <span class="keyword">int</span> n, <span class="keyword">int</span> i) {
+    <span class="keyword">int</span> largest = i; 
+    <span class="keyword">int</span> l = 2 * i + 1; <span class="comment">// Left child index</span>
+    <span class="keyword">int</span> r = 2 * i + 2; <span class="comment">// Right child index</span>
+
+    <span class="comment">// If left child is larger than root</span>
+    <span class="keyword">if</span> (l < n && arr[l] > arr[largest])
+        largest = l;
+
+    <span class="comment">// If right child is larger than largest so far</span>
+    <span class="keyword">if</span> (r < n && arr[r] > arr[largest])
+        largest = r;
+
+    <span class="comment">// If largest is not root, swap and continue</span>
+    <span class="keyword">if</span> (largest != i) {
+        swap(arr[i], arr[largest]);
+        heapify(arr, n, largest);
+    }
+}</pre>
+        </div>
+
+        <div class="logic-grid">
+            <div class="logic-card">
+                <h3>Parent Index</h3>
+                <p>To find the parent of a node at index <span class="math">i</span>:</p>
+                <p class="math">Parent = (i - 1) / 2</p>
+            </div>
+            <div class="logic-card">
+                <h3>Left Child</h3>
+                <p>To find the left child of a node at index <span class="math">i</span>:</p>
+                <p class="math">Left = 2 * i + 1</p>
+            </div>
+            <div class="logic-card">
+                <h3>Right Child</h3>
+                <p>To find the right child of a node at index <span class="math">i</span>:</p>
+                <p class="math">Right = 2 * i + 2</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

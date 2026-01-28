@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Hash Hub</title>
+    <link rel="stylesheet" href="hash.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="theory-header">
+            <div class="header-content">
+                <h1>Neural Hash Table</h1>
+                <p>Visualizing Collision Handling with Chaining (Vector of Lists)</p>
+                
+                <div class="action-row">
+                    <input type="number" id="keyInput" placeholder="Neuron ID">
+                    <button onclick="insertKey()" class="btn-main">Pulse (Insert)</button>
+                    <button onclick="resetTable()" class="btn-reset">System Reset</button>
+                    <a href="code.html" class="view-logic-btn">View Logic</a>
+                </div>
+            </div>
+        </header>
+
+        <div id="hash-table-container">
+            </div>
+        
+        <a href="../index.html" class="back-link">← Return to Neural Hub</a>
+    </div>
+    <script src="hash.js"></script>
+</body>
+</html>

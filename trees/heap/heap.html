@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heap Visualizer - Max & Min</title>
+    <link rel="stylesheet" href="heap.css">
+</head>
+<body>
+    <a href="../tree-hub.html" class="back-home">← Back to Hub</a>
+
+    <div class="page-wrapper">
+        <header class="theory-header">
+            <div class="header-content">
+                <h1>Binary Heap Visualizer</h1>
+                <p>A <strong>Heap</strong> is a complete binary tree stored in an <strong>Array</strong>. 
+                   In a Max-Heap, the parent is always greater than its children.</p>
+                
+                <div class="action-row">
+    <div class="controls">
+        <div class="input-group primary-group">
+            <input type="number" id="nodeInput" placeholder="Value">
+            <button onclick="insertNode()" class="btn-primary">Insert Node</button>
+        </div>
+        
+        <button onclick="extractRoot()" class="btn-danger">Extract Root</button>
+        <button onclick="resetHeap()" class="btn-reset">Reset</button>
+    </div>
+    
+    <div class="links-group">
+        <a href="code.html" class="code-btn-modern">
+            <span>Heap Logic</span>
+            <small>C++ Array Based</small>
+        </a>
+    </div>
+</div>
+            </div>
+        </header>
+
+        <main class="visualizer-container">
+            <div class="visual-area tree-view">
+                <h3 class="view-label">Tree Representation</h3>
+                <svg id="heap-svg"></svg>
+            </div>
+
+            <div class="visual-area array-view">
+                <h3 class="view-label">Array Representation (Memory)</h3>
+                <div id="array-container" class="array-flex">
+                    </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="heap.js"></script>
+</body>
+</html>

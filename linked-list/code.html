@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linked List Implementation - Manual Logic</title>
+    <style>
+        :root {
+            --bg: #0b1120;
+            --card: #111827;
+            --primary: #6366f1;
+            --accent: #ec4899;
+            --text: #94a3b8;
+            --header-text: #f8fafc;
+            --code-bg: #000000;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 { color: var(--header-text); margin: 0; }
+
+        .back-link { text-decoration: none; color: var(--primary); font-size: 0.9rem; }
+
+        /* Tabs Design */
+        .tabs-container { margin-bottom: 30px; border-bottom: 1px solid #1e293b; padding-bottom: 10px; }
+        .tab-btn {
+            background: #1e293b;
+            border: none;
+            color: var(--header-text);
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: 0.3s;
+        }
+        .tab-btn.active { background: var(--primary); box-shadow: 0 0 15px rgba(99, 102, 241, 0.4); }
+
+        .code-display {
+            background: var(--code-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #1e293b;
+            display: none;
+        }
+        .code-display.active { display: block; }
+
+        pre {
+            margin: 0;
+            font-family: 'Fira Code', monospace;
+            line-height: 1.6;
+            color: #e2e8f0;
+            overflow-x: auto;
+        }
+
+        .keyword { color: #ff79c6; }
+        .type { color: #8be9fd; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; font-style: italic; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Linked List Logic</h1>
+        <a href="linked-list.html" class="back-link">← Back to Visualizer</a>
+    </div>
+
+    <div class="tabs-container">
+        <button class="tab-btn active" onclick="showTab('singly', this)">Singly (Linear)</button>
+        <button class="tab-btn" onclick="showTab('doubly', this)">Doubly Linked List</button>
+    </div>
+
+    <div id="singly" class="code-display active">
+        <h3 style="color: var(--accent);">C++ Manual Implementation</h3>
+<pre>
+<span class="keyword">struct</span> <span class="type">Node</span> {
+    <span class="type">int</span> data;
+    <span class="type">Node</span>* next;
+};
+
+<span class="comment">// Insert at Front</span>
+<span class="keyword">void</span> <span class="function">insertFront</span>(<span class="type">Node</span>** head, <span class="type">int</span> val) {
+    <span class="type">Node</span>* newNode = <span class="keyword">new</span> <span class="type">Node</span>();
+    newNode->data = val;
+    newNode->next = *head;
+    *head = newNode;
+}
+
+<span class="comment">// Delete from End</span>
+<span class="keyword">void</span> <span class="function">popEnd</span>(<span class="type">Node</span>** head) {
+    <span class="keyword">if</span> (*head == <span class="keyword">NULL</span>) <span class="keyword">return</span>;
+    <span class="keyword">if</span> ((*head)->next == <span class="keyword">NULL</span>) { <span class="keyword">delete</span> *head; *head = <span class="keyword">NULL</span>; <span class="keyword">return</span>; }
+    
+    <span class="type">Node</span>* temp = *head;
+    <span class="keyword">while</span> (temp->next->next != <span class="keyword">NULL</span>) temp = temp->next;
+    <span class="keyword">delete</span> temp->next;
+    temp->next = <span class="keyword">NULL</span>;
+}</pre>
+    </div>
+
+    <div id="doubly" class="code-display">
+        <h3 style="color: var(--accent);">C++ Manual Implementation</h3>
+        
+<pre>
+<span class="keyword">struct</span> <span class="type">Node</span> {
+    <span class="type">int</span> data;
+    <span class="type">Node</span>* next;
+    <span class="type">Node</span>* prev;
+};
+
+<span class="comment">// Insert at End (Doubly)</span>
+<span class="keyword">void</span> <span class="function">insertEnd</span>(<span class="type">Node</span>** head, <span class="type">int</span> val) {
+    <span class="type">Node</span>* newNode = <span class="keyword">new</span> <span class="type">Node</span>();
+    newNode->data = val;
+    newNode->next = <span class="keyword">NULL</span>;
+    
+    <span class="keyword">if</span> (*head == <span class="keyword">NULL</span>) {
+        newNode->prev = <span class="keyword">NULL</span>;
+        *head = newNode;
+        <span class="keyword">return</span>;
+    }
+    
+    <span class="type">Node</span>* last = *head;
+    <span class="keyword">while</span> (last->next != <span class="keyword">NULL</span>) last = last->next;
+    
+    last->next = newNode;
+    newNode->prev = last;
+}
+
+<span class="comment">// Delete from Front (Doubly)</span>
+<span class="keyword">void</span> <span class="function">popFront</span>(<span class="type">Node</span>** head) {
+    <span class="keyword">if</span> (*head == <span class="keyword">NULL</span>) <span class="keyword">return</span>;
+    <span class="type">Node</span>* temp = *head;
+    *head = (*head)->next;
+    <span class="keyword">if</span> (*head != <span class="keyword">NULL</span>) (*head)->prev = <span class="keyword">NULL</span>;
+    <span class="keyword">delete</span> temp;
+}</pre>
+    </div>
+</div>
+
+<script>
+    function showTab(id, btn) {
+        document.querySelectorAll('.code-display').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        btn.classList.add('active');
+    }
+</script>
+
+</body>
+</html>
