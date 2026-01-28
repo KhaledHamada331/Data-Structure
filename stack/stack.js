@@ -1,39 +1,35 @@
 // stack.js
 let stack = [];
 
-// stack.js
-
 function handlePush() {
     const input = document.getElementById('stackInput');
     const val = input.value;
 
     if (val === "") {
-        updateMessage("برجاء إدخال قيمة أولاً!", "#ef4444");
+        updateMessage("Please enter a value first!", "#ef4444");
         return;
     }
 
     stack.push(val);
     renderStack("push");
     
-    // السطر ده بيمسح الـ Input بعد الإضافة
+    // Clear input and refocus for rapid entry
     input.value = ""; 
-    // وبيرجع الـ Focus للـ Input عشان تكتب الرقم اللي بعده بسرعة
     input.focus(); 
     
-    updateMessage(`تمت إضافة ${val} بنجاح`, "#10b981");
+    updateMessage(`Successfully added: ${val}`, "#10b981");
 }
-
-
 
 async function handlePop() {
     if (stack.length === 0) {
-        updateMessage("الـ Stack فارغ (Underflow)!", "#ef4444");
+        updateMessage("Stack Underflow! The stack is empty.", "#ef4444");
         return;
     }
 
     const items = document.querySelectorAll('.stack-item');
     const lastItem = items[items.length - 1];
     
+    // Smooth exit animation
     lastItem.style.transform = "translateX(200px)";
     lastItem.style.opacity = "0";
     
@@ -41,33 +37,33 @@ async function handlePop() {
     
     const removed = stack.pop();
     renderStack();
-    updateMessage(`تم حذف ${removed} من القمة`, "#f59e0b");
+    updateMessage(`Removed ${removed} from Top`, "#f59e0b");
 }
 
 function handlePeek() {
     if (stack.length === 0) {
-        updateMessage("لا يوجد عناصر!", "#94a3b8");
+        updateMessage("No elements in stack!", "#94a3b8");
         return;
     }
     const top = stack[stack.length - 1];
-    updateMessage(`العنصر في القمة هو: ${top}`, "#3b82f6");
+    updateMessage(`Top Element: ${top}`, "#3b82f6");
     
     const items = document.querySelectorAll('.stack-item');
     const topElement = items[items.length - 1];
     
-    // تمييز احترافي باللون الأزرق
-   // التعديل ده بيضمن إن العنصر ينور حتى لو الـ border مستخبي
-topElement.style.boxShadow = "0 0 20px #3b82f6"; 
-topElement.style.backgroundColor = "#3b82f6"; // تغيير لون مؤقت
-setTimeout(() => {
-    topElement.style.boxShadow = "none";
-    topElement.style.backgroundColor = ""; // يرجع للـ gradient الأصلي
-}, 1000);
+    // Visual Highlight for Peek action
+    topElement.style.boxShadow = "0 0 20px #3b82f6"; 
+    topElement.style.backgroundColor = "#3b82f6"; 
+    
+    setTimeout(() => {
+        topElement.style.boxShadow = "none";
+        topElement.style.backgroundColor = ""; 
+    }, 1000);
 }
 
 function renderStack(action = "") {
     const container = document.getElementById('stack-container');
-    if (!container) return; // حماية لو الـ container مش موجود
+    if (!container) return; 
     
     container.innerHTML = "";
     
@@ -81,7 +77,7 @@ function renderStack(action = "") {
         container.appendChild(div);
     });
 
-    // التأكد إن العنصر موجود قبل التعديل عشان الـ Error يختفي
+    // Update Top indicator safely
     const topEl = document.getElementById('top-val');
     if (topEl) {
         topEl.innerText = stack.length > 0 ? stack[stack.length - 1] : "None";
@@ -90,6 +86,8 @@ function renderStack(action = "") {
 
 function updateMessage(msg, color = "white") {
     const p = document.getElementById('message');
-    p.innerText = msg;
-    p.style.color = color;
+    if (p) {
+        p.innerText = msg;
+        p.style.color = color;
+    }
 }
